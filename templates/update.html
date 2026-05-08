@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="/static/style.css">
+
+<h2>Update Product</h2>
+
+<!-- 🔹 Product Selection List -->
+<ul>
+{% for p in products %}
+    <li>
+        {{p.name}} - ₹{{p.price}} - Qty: {{p.qty}}
+        <a href="/update/{{ p._id }}"class="delete-link">Update</a>
+    </li>
+{% endfor %}
+</ul>
+
+<hr>
+
+<!-- 🔹 Show form ONLY if product is selected -->
+{% if product %}
+<form method="POST">
+    <input name="name" value="{{ product.name }}">
+    <input name="price" type="number" value="{{ product.price }}">
+    <input name="qty" type="number" value="{{ product.qty }}">
+    <button>Update</button>
+</form>
+{% endif %}

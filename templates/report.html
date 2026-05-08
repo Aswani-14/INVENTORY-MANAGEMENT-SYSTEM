@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Report</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+            margin: 0;
+        }
+
+        .navbar {
+            background: #1e293b;
+            padding: 15px;
+        }
+
+        .navbar a {
+            color: white;
+            margin: 10px;
+            text-decoration: none;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #334155;
+            text-align: center;
+        }
+
+        th {
+            background: #1e293b;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            border-radius: 10px;
+        }
+
+        .low {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/products">Products</a>
+    <a href="/suppliers">Suppliers</a>
+    <a href="/report">Report</a>
+    <a href="/logout">Logout</a>
+</div>
+
+<div class="container">
+
+    <h1>Inventory Report</h1>
+
+    <!-- Summary Cards -->
+    <div class="card">Total Products: {{ total_products }}</div>
+    <div class="card">Total Quantity: {{ total_quantity }}</div>
+    <div class="card">Low Stock Items: {{ low_stock|length }}</div>
+
+    <!-- Table -->
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+
+        {% for p in products %}
+        <tr>
+            <td>{{ p.name }}</td>
+            <td>₹{{ p.price }}</td>
+            <td class="{% if p.qty|int < 5 %}low{% endif %}">
+                {{ p.qty }}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+</body>
+</html>

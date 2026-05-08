@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="/static/style.css">
+
+<h2>Delete Product</h2>
+
+<!-- 🔹 Product List -->
+<ul>
+{% for p in products %}
+    <li>
+        {{p.name}} - ₹{{p.price}} - Qty: {{p.qty}}
+        <a href="/delete/{{ p._id }}" class="delete-link">Delete</a>
+    </li>
+{% endfor %}
+</ul>
+
+<hr>
+
+<!-- 🔹 Show confirmation ONLY if product selected -->
+{% if product %}
+    <h3>Are you sure you want to delete?</h3>
+
+    <p>
+        {{ product.name }} - ₹{{ product.price }} - Qty: {{ product.qty }}
+    </p>
+
+    <form method="POST">
+        <button>Confirm Delete</button>
+    </form>
+{% endif %}

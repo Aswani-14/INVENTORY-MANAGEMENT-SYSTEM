@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="/static/style.css">
+
+<h2>Suppliers</h2>
+
+<form method="POST">
+    <input name="name" placeholder="Name">
+    <input name="phone" placeholder="Phone">
+    <button>Add Supplier</button>
+</form>
+
+<ul>
+{% for s in suppliers %}
+    <li>{{s.name}} - {{s.phone}}</li>
+{% endfor %}
+</ul>
